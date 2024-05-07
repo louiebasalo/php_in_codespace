@@ -5,19 +5,34 @@
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-
+	
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
 	// For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
 	"forwardPorts": [
 		8080
+		// 3306,
+		// 3000
 	],
+	"portsAttributes": {
+		// "8080": {
+		// 	"label": "php_app"
+		// },
+		// "3306": {
+		// 	"label": "MariaDB"
+		// },
+		// "3000": {
+		// 	"label": "PHPMyAdmin"
+		// }
+	},
 	"features": {
 		"ghcr.io/devcontainers/features/github-cli:1": {
 			"installDirectlyFromGitHubRelease": true,
 			"version": "latest"
-		}
+		},
+		"ghcr.io/devcontainers/features/powershell": {}
+
 	}
 
 	// Use 'postCreateCommand' to run commands after the container is created.

@@ -5,12 +5,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-
     volumes:
       - ../..:/workspaces:cached
 
     # Overrides default command so things don't shut down after the process ends.
-    command: sleep infinity
+    # command: sleep infinity
 
     # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
     network_mode: service:db
@@ -32,5 +31,14 @@ services:
     # Add "forwardPorts": ["3306"] to **devcontainer.json** to forward MariaDB locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
   
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3000
+      - UPLOAD_LIMIT=300M
+      - PMA_ARBITARY=1
+
 volumes:
   mariadb-data:
